@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LetsBeTestersTest extends BaseTest {
 
-    private void openPage() {
+    private void openNokiaPage() {
         getDriver().get("https://www.nokia.com/");
         getDriver().findElement(By.id("modalAcceptAllBtn")).click();
     }
@@ -17,7 +17,7 @@ public class LetsBeTestersTest extends BaseTest {
     @Test
     public void testCountOfSectionButtons() {
 
-        openPage();
+        openNokiaPage();
 
         List<WebElement> carousel = getDriver().findElements(By.xpath("//div[contains(@id, 'tns1-item')]//h2"));
 
@@ -27,7 +27,7 @@ public class LetsBeTestersTest extends BaseTest {
     @Test
     public void testCheckTablet() {
 
-        openPage();
+        openNokiaPage();
 
         Actions action = new Actions(getDriver());
 
@@ -41,6 +41,5 @@ public class LetsBeTestersTest extends BaseTest {
         String actualResult = getDriver().findElement(By.xpath("//li[contains(@class, 'h5')]")).getText();
 
         Assert.assertEquals(actualResult, "Nokia T20");
-
     }
 }
