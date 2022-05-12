@@ -9,23 +9,21 @@ public class LadaTest extends BaseTest {
     public void testLadaZhivitsaForOnliner() {
         getDriver().get("https://www.onliner.by/");
 
-        WebElement button = getDriver().findElement(By.xpath("//*[text()=\"Вход\"]"));
+        WebElement button = getDriver().findElement(By.xpath("//div[text()='Вход']"));
         button.click();
 
-        WebElement fieldNick = getDriver().findElement(By.xpath("//*[contains(@placeholder,'Ник или e-mail')]"));
-        WebElement fieldPassword = getDriver().findElement(By.xpath("//*[contains(@type,'password')]"));
-        WebElement Submit = getDriver().findElement(By.xpath("//*[contains(@class,\"auth-button_primary\")]"));
+        WebElement fieldNick = getDriver().findElement(By.xpath("//input[@Placeholder='Ник или e-mail']"));
+        WebElement fieldPassword = getDriver().findElement(By.xpath("//input[@type = 'password']"));
+        WebElement submit = getDriver().findElement(By.xpath("//button[contains(@class,'auth-button_primary')]"));
 
         fieldNick.sendKeys("invalidNick");
         fieldPassword.sendKeys("invalidPassword");
-        Submit.click();
+        submit.click();
 
-        WebElement ErrorMessage = getDriver().findElement(By.xpath("//*[contains(@class,\"description_error\")]"));
+        WebElement errorMessage = getDriver().findElement(By.xpath("//div[contains(@class,'description_error')]"));
 
-        Assert.assertEquals(ErrorMessage.getText(), "Неверный логин или пароль");
+        Assert.assertEquals(errorMessage.getText(), "Неверный логин или пароль");
 
-        fieldNick.clear();
-        fieldPassword.clear();
     }
 
 }
