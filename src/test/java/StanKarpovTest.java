@@ -10,7 +10,6 @@ public class StanKarpovTest extends BaseTest  {
     @Test
     public void testEmailRegistration(){
         getDriver().get("https://geteasyqa.com/");
-        getDriver().manage().window().maximize();
 
         WebElement emailBox = getDriver().findElement(By.xpath("//input[@class='submit-try-field rounded-left emailSub']"));
         emailBox.sendKeys("test@email.com");
@@ -31,20 +30,19 @@ public class StanKarpovTest extends BaseTest  {
     }
 
     @Test
-    public void pricing(){
+    public void testPricing(){
         getDriver().get("https://geteasyqa.com/");
-        getDriver().manage().window().maximize();
 
         WebElement pricing = getDriver().findElement(By.xpath("//a[@title='Pricing']"));
         pricing.click();
         WebElement number = getDriver().findElement(By.xpath("//input[@id='rangeInput500']"));
         number.sendKeys("00");
 
-        WebElement slider = getDriver().findElement(By.xpath("//div[@id='js-rangeslider-0']//div[@class='rangeslider__handle']"));
+        WebElement slider = getDriver().findElement(By.xpath("//div[@class='rangeslider__handle']"));
         Actions move = new Actions(getDriver());
         move.moveToElement(slider).clickAndHold().moveByOffset(250, 0).release().perform();
 
-        WebElement tryButton = getDriver().findElement(By.xpath("//a[@href='https://app.geteasyqa.com/users/sign_up?utm_source=internal&utm_medium=GetEasyQA&utm_campaign=try-for-free-home-page']"));
+        WebElement tryButton = getDriver().findElement(By.xpath("//div[@Class='front _tabForCloud']//a[text()='Try']"));
         tryButton.click();
 
         WebElement firstName = getDriver().findElement(By.xpath("//input[@id='user_first_name']"));
@@ -60,16 +58,15 @@ public class StanKarpovTest extends BaseTest  {
         passwordConfirmation.sendKeys("Password123");
         signUp.click();
 
-        WebElement sorry = getDriver().findElement(By.xpath("//h2[normalize-space()='Sorry :(']"));
+        WebElement sorry = getDriver().findElement(By.xpath("//h2"));
         Assert.assertEquals(sorry.getText(), "Sorry :(");
     }
 
     @Test
-    public void integrations(){
+    public void testIntegrations(){
         getDriver().get("https://geteasyqa.com/");
-        getDriver().manage().window().maximize();
 
-        WebElement integrations = getDriver().findElement(By.xpath("//li[@id='menu-item-13223']//a[@title='Integrations'][normalize-space()='Integrations']"));
+        WebElement integrations = getDriver().findElement(By.xpath("//li[@id='menu-item-13223']/a"));
         integrations.click();
         WebElement comments = getDriver().findElement(By.xpath("//textarea[@id='comment']"));
         comments.sendKeys("Hello world!");
